@@ -15,6 +15,7 @@ function ShoppingCart() {
   const { cartItems, setCartItems } = useContext(ShoppingCartContext);
   const history = useHistory();
 
+  // This is where the amount or items in the cart is set & the subtotal of off all items in the cart
   useEffect(() => {
     let amount = 0;
     let items = 0;
