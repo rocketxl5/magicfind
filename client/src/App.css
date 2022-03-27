@@ -406,6 +406,10 @@ input[type='email'] {
   border-width: 1px;
 }
 
+input.search-field {
+  border: none;
+}
+
 .text-field:focus {
   /* border-color: #17a2bb;
   outline-color: #17a2bb; */
