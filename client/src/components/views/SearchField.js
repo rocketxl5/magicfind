@@ -287,7 +287,6 @@ const Input = styled.input`
   display: inline-block;
   padding: 10px;
   font-size: 1em;
-  outline: none;
   width: 100%;
   &:focus {
     outline: none;
