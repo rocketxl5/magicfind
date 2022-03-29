@@ -474,7 +474,7 @@ ul.search-result {
   flex-direction: column;
   width: 100%;
   max-height: 40vh;
-  top: 52px;
+  top: 3.1em;
   left: 0;
 
   overflow-y: scroll;

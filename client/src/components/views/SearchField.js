@@ -276,7 +276,9 @@ const SearchField = ({
     </Wrapper>
   );
 };
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  position: relative;
+`;
 const Search = styled.div`
   border: 1px solid #333;
   display: flex;
