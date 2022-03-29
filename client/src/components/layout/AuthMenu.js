@@ -3,7 +3,7 @@ import React, { Fragment, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
-function AuthMenu({ setDisplay, setUser }) {
+function AuthMenu({ setDisplay, setUser, innerWidth }) {
   const history = useHistory();
   const { setUnreadMail } = useContext(UserContext);
   const { setCartItems, setItemsCount } = useContext(ShoppingCartContext);
@@ -19,13 +19,19 @@ function AuthMenu({ setDisplay, setUser }) {
   return (
     <Fragment>
       <li>
-        <Link to="/store">Store</Link>
+        <Link onClick={(e) => setDisplay(false)} to="/store">
+          Store
+        </Link>
       </li>
       <li>
-        <Link to="/profile">Profile</Link>
+        <Link onClick={(e) => setDisplay(false)} to="/profile">
+          Profile
+        </Link>
       </li>
       <li>
-        <Link to="/settings">Settings</Link>
+        <Link onClick={(e) => setDisplay(false)} to="/settings">
+          Settings
+        </Link>
       </li>
       <li>
         <div className="signout" onClick={() => singout()}>

@@ -14,7 +14,7 @@ import { FiMail } from 'react-icons/fi';
 import { UserContext } from '../../contexts/UserContext';
 import styled from 'styled-components';
 
-const Navbar = ({ navCheckBox, searchCheckbox }) => {
+const Navbar = ({ navCheckBox, searchCheckbox, innerWidth }) => {
   const [display, setDisplay] = useState(true);
   const { user, setUser } = useContext(UserContext);
 
@@ -31,6 +31,11 @@ const Navbar = ({ navCheckBox, searchCheckbox }) => {
 
   return (
     <Fragment>
+      <div className="section--logo">
+        <h1 className="logo">
+          <Link to="/">Magic Find</Link>
+        </h1>
+      </div>
       <input
         type="checkbox"
         id="nav-toggle"
@@ -63,7 +68,11 @@ const Navbar = ({ navCheckBox, searchCheckbox }) => {
           ) : (
             <Fragment>
               {display ? (
-                <AuthMenu setDisplay={setDisplay} setUser={setUser} />
+                <AuthMenu
+                  setDisplay={setDisplay}
+                  setUser={setUser}
+                  innerWidth={innerWidth}
+                />
               ) : (
                 ''
               )}
