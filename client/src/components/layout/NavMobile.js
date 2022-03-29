@@ -14,28 +14,31 @@ import { FiMail } from 'react-icons/fi';
 import { UserContext } from '../../contexts/UserContext';
 import styled from 'styled-components';
 
-const Navbar = ({ navCheckBox, searchCheckbox, innerWidth }) => {
+const Navbar = ({ navCheckBox, searchCheckbox }) => {
   const [display, setDisplay] = useState(true);
   const { user, setUser } = useContext(UserContext);
+  // console.log(navCheckBox.current.checked);
 
   const handleClick = (e) => {
     const checkbox = document.getElementById('nav-toggle');
     checkbox.checked = false;
   };
 
+  // If nav checkbox is checked, uncheck search checkbox
+  // This closes search field when hamburger is clicked on
   const handleChange = (e) => {
-    if (e.target.checked && searchCheckbox.current.checked) {
+    console.log(navCheckBox.current.checked);
+    if (navCheckBox.current.checked && searchCheckbox.current.checked) {
       searchCheckbox.current.checked = false;
+    }
+
+    if (navCheckBox.current.checked) {
+      setDisplay(true);
     }
   };
 
   return (
     <Fragment>
-      <div className="section--logo">
-        <h1 className="logo">
-          <Link to="/">Magic Find</Link>
-        </h1>
-      </div>
       <input
         type="checkbox"
         id="nav-toggle"
@@ -49,7 +52,11 @@ const Navbar = ({ navCheckBox, searchCheckbox, innerWidth }) => {
         <span></span>
       </label>
       <nav id="navbar" className="navbar">
-        <ul className="nav--list-items" onClick={(e) => handleClick(e)}>
+        <ul
+          id="nav-list"
+          className="nav--list-items"
+          onClick={(e) => handleClick(e)}
+        >
           {!user ? (
             <Fragment>
               <li>
@@ -68,11 +75,7 @@ const Navbar = ({ navCheckBox, searchCheckbox, innerWidth }) => {
           ) : (
             <Fragment>
               {display ? (
-                <AuthMenu
-                  setDisplay={setDisplay}
-                  setUser={setUser}
-                  innerWidth={innerWidth}
-                />
+                <AuthMenu setDisplay={setDisplay} setUser={setUser} />
               ) : (
                 ''
               )}

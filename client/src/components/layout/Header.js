@@ -56,6 +56,11 @@ const Header = () => {
     <Fragment>
       {innerWidth < 1200 ? (
         <header className="header-mobile">
+          <div className="section--logo">
+            <h1 className="logo">
+              <Link to="/">Magic Find</Link>
+            </h1>
+          </div>
           <NavMobile
             navCheckBox={navCheckBox}
             searchCheckbox={searchCheckbox}
