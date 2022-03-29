@@ -17,15 +17,23 @@ import styled from 'styled-components';
 const Navbar = ({ navCheckBox, searchCheckbox }) => {
   const [display, setDisplay] = useState(true);
   const { user, setUser } = useContext(UserContext);
+  // console.log(navCheckBox.current.checked);
 
   const handleClick = (e) => {
     const checkbox = document.getElementById('nav-toggle');
     checkbox.checked = false;
   };
 
+  // If nav checkbox is checked, uncheck search checkbox
+  // This closes search field when hamburger is clicked on
   const handleChange = (e) => {
-    if (e.target.checked && searchCheckbox.current.checked) {
+    console.log(navCheckBox.current.checked);
+    if (navCheckBox.current.checked && searchCheckbox.current.checked) {
       searchCheckbox.current.checked = false;
+    }
+
+    if (navCheckBox.current.checked) {
+      setDisplay(true);
     }
   };
 
@@ -44,7 +52,11 @@ const Navbar = ({ navCheckBox, searchCheckbox }) => {
         <span></span>
       </label>
       <nav id="navbar" className="navbar">
-        <ul className="nav--list-items" onClick={(e) => handleClick(e)}>
+        <ul
+          id="nav-list"
+          className="nav--list-items"
+          onClick={(e) => handleClick(e)}
+        >
           {!user ? (
             <Fragment>
               <li>

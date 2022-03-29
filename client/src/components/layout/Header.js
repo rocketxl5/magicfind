@@ -6,7 +6,8 @@ import React, {
   useContext
 } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import Navbar from './Navbar';
+import NavMobile from './NavMobile';
+import Nav from './Nav';
 import AuthMenu from './AuthMenu';
 import SearchCatalog from '../views/SearchCatalog';
 import { FiMail } from 'react-icons/fi';
@@ -25,6 +26,8 @@ const Header = () => {
   const { notFound } = useContext(RouteContext);
   const { user, unreadMail } = useContext(UserContext);
   const { itemsCount } = useContext(ShoppingCartContext);
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
   const handleChange = (e) => {
     if (e.target.checked && navCheckBox.current.checked) {
       navCheckBox.current.checked = false;
@@ -32,67 +35,91 @@ const Header = () => {
   };
 
   useEffect(() => {
-    navCheckBox.current.checked = false;
-    searchCheckbox.current.checked = false;
+    if (innerWidth < 1200) {
+      navCheckBox.current.checked = false;
+      searchCheckbox.current.checked = false;
+    }
   }, [location]);
 
-  return (
-    <header className="header">
-      <div className="section--logo">
-        <h1 className="logo">
-          <Link to="/">Magic Find</Link>
-        </h1>
-      </div>
-      {!notFound && (
-        <Navbar navCheckBox={navCheckBox} searchCheckbox={searchCheckbox} />
-      )}
+  const changeInnerWidth = () => {
+    if (setInnerWidth) setInnerWidth(window.innerWidth);
+  };
 
-      <div className="section--icons">
-        {user && (
-          <Mail className="section--mail padding-right">
-            <Link to="/mail/inbox" title="Mailbox">
-              {unreadMail > 0 && (
-                <UnreadContainer>
-                  <Unread>{unreadMail}</Unread>
-                </UnreadContainer>
-              )}
-              <FiMail className="header--icon" size={27} />
-            </Link>
-          </Mail>
-        )}
-        <div className="section--search padding-right">
-          <input
-            type="checkbox"
-            id="search-toggle"
-            className="search-toggle"
-            ref={searchCheckbox}
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-          <label htmlFor="search-toggle" className="search-toggle-label">
-            <FiSearch
-              className="header--icon"
-              size={27}
-              title="Search Catalog"
-            />
-          </label>
-          <div className="section searchbar">
-            <SearchCatalog className="section searchbar" />
+  useEffect(() => {
+    window.addEventListener('resize', changeInnerWidth);
+    return () => {
+      window.removeEventListener('resize', changeInnerWidth);
+    };
+  });
+
+  return (
+    <Fragment>
+      {innerWidth < 1200 ? (
+        <header className="header-mobile">
+          <div className="section--logo">
+            <h1 className="logo">
+              <Link to="/">Magic Find</Link>
+            </h1>
           </div>
-        </div>
-        <Cart className="section--cart padding-right">
-          <Link to="/cart">
-            {itemsCount > 0 && (
-              <CountContainer>
-                <Count>{itemsCount}</Count>
-              </CountContainer>
+          <NavMobile
+            navCheckBox={navCheckBox}
+            searchCheckbox={searchCheckbox}
+            innerWidth={innerWidth}
+          />
+          <div className="section-mobile-icons">
+            {user && (
+              <Mail className="section--mail padding-right">
+                <Link to="/mail/inbox" title="Mailbox">
+                  {unreadMail > 0 && (
+                    <UnreadContainer>
+                      <Unread>{unreadMail}</Unread>
+                    </UnreadContainer>
+                  )}
+                  <FiMail className="header--icon" size={27} />
+                </Link>
+              </Mail>
             )}
-            <FiShoppingCart size={27} title="Shopping Cart" />
-          </Link>
-        </Cart>
-      </div>
-    </header>
+
+            <div className="section--search padding-right">
+              <input
+                type="checkbox"
+                id="search-toggle"
+                className="search-toggle"
+                ref={searchCheckbox}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+              />
+              <label htmlFor="search-toggle" className="search-toggle-label">
+                <FiSearch
+                  className="header--icon"
+                  size={27}
+                  title="Search Catalog"
+                />
+              </label>
+              <div className="section searchbar">
+                <SearchCatalog className="section searchbar" />
+              </div>
+            </div>
+
+            <Cart className="section--cart">
+              <Link to="/cart">
+                {itemsCount > 0 && (
+                  <CountContainer>
+                    <Count>{itemsCount}</Count>
+                  </CountContainer>
+                )}
+                <FiShoppingCart size={27} title="Shopping Cart" />
+              </Link>
+            </Cart>
+          </div>
+        </header>
+      ) : (
+        <header className="header">
+          <Nav innerWidth={innerWidth} />
+        </header>
+      )}
+    </Fragment>
   );
 };
 
@@ -130,7 +157,7 @@ const UnreadContainer = styled.div`
   align-items: center;
   top: -10px;
   left: 17px;
-  background: #28a745;
+  background-color: #28a745;
   width: 22px;
   height: 22px;
   border-radius: 50%;
