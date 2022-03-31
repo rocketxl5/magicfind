@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import SearchCatalog from '../views/SearchCatalog';
 import AuthMenu from './AuthMenu';
@@ -81,7 +81,7 @@ const Navbar = ({ innerWidth }) => {
                   <Count>{itemsCount}</Count>
                 </CountContainer>
               )}
-              <FiShoppingCart size={27} title="Shopping Cart" />
+              <FiShoppingCart size={30} title="Shopping Cart" />
             </Link>
           </Cart>
         </Elements>
@@ -94,23 +94,6 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const Login = styled.button`
-  width: 6em;
-  padding: 0.6em 0;
-  color: #fff;
-  font-size: 1rem;
-  background-color: #28a745;
-  border: none;
-`;
-const Register = styled.button`
-  width: 6em;
-  padding: 0.6em 0;
-  color: #fff;
-  font-size: 1rem;
-  background-color: #007bff;
-  border: none;
 `;
 
 const Logo = styled.div`
@@ -141,7 +124,25 @@ const Elements = styled.div`
   align-items: center;
 `;
 
-const Buttons = styled.div``;
+const Buttons = styled.div`
+  a button {
+    width: 7em;
+    margin-right: 1em;
+    padding: 0.6em 0;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+  }
+`;
+
+const Login = styled.button`
+  background-color: #28a745;
+`;
+
+const Register = styled.button`
+  background-color: #007bff;
+`;
+
 const DropDown = styled.div``;
 
 const Cart = styled(Link)`

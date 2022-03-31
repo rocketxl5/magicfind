@@ -8,13 +8,10 @@ import React, {
 import { useLocation, Link } from 'react-router-dom';
 import NavMobile from './NavMobile';
 import Nav from './Nav';
-import AuthMenu from './AuthMenu';
 import SearchCatalog from '../views/SearchCatalog';
 import { FiMail } from 'react-icons/fi';
 import { FiShoppingCart } from 'react-icons/fi';
-import { FiChevronDown } from 'react-icons/fi';
 import { FiSearch } from 'react-icons/fi';
-import { RouteContext } from '../../contexts/RouteContext';
 import { UserContext } from '../../contexts/UserContext';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
 import styled from 'styled-components';
@@ -23,7 +20,6 @@ const Header = () => {
   const location = useLocation();
   const navCheckBox = useRef(null);
   const searchCheckbox = useRef(null);
-  const { notFound } = useContext(RouteContext);
   const { user, unreadMail } = useContext(UserContext);
   const { itemsCount } = useContext(ShoppingCartContext);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);

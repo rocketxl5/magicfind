@@ -1,18 +1,8 @@
-import React, {
-  Fragment,
-  useState,
-  useEffect,
-  useContext,
-  useRef
-} from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import SearchCatalog from '../views/SearchCatalog';
+
 import AuthMenu from './AuthMenu';
-import { FiChevronDown } from 'react-icons/fi';
-import { FiShoppingCart } from 'react-icons/fi';
-import { FiMail } from 'react-icons/fi';
 import { UserContext } from '../../contexts/UserContext';
-import styled from 'styled-components';
 
 const Navbar = ({ navCheckBox, searchCheckbox }) => {
   const [display, setDisplay] = useState(true);

@@ -3,7 +3,7 @@ import React, { Fragment, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import { ShoppingCartContext } from '../../contexts/ShoppingCartContext';
-function AuthMenu({ setDisplay, setUser, innerWidth }) {
+function AuthMenu({ setDisplay, setUser }) {
   const history = useHistory();
   const { setUnreadMail } = useContext(UserContext);
   const { setCartItems, setItemsCount } = useContext(ShoppingCartContext);
