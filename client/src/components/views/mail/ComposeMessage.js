@@ -103,7 +103,7 @@ const Message = () => {
   }, [count]);
 
   return (
-    <div className="wrapper">
+    <div className="message-container">
       <main className="content">
         <div className="message-content">
           <section className="message-form">

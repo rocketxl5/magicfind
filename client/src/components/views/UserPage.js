@@ -21,8 +21,8 @@ const UserPage = () => {
 
   return (
     <main className="user-page-container">
-      <Link to="/store">
-        <section className="user-page-section to-store">
+      <section className="user-page-section to-store">
+        <Link to="/store">
           <h2>Manage Your Store</h2>
           <article>
             <p>Go to your to your store to modify it's content.</p>
@@ -31,10 +31,11 @@ const UserPage = () => {
               of existing cards.
             </p>
           </article>
-        </section>
-      </Link>
-      <Link to="/search-api">
-        <section className="user-page-section  to-addcard">
+        </Link>
+      </section>
+
+      <section className="user-page-section  to-addcard">
+        <Link to="/search-api">
           <h2>Add A New Card</h2>
           <article>
             <p>
@@ -45,28 +46,19 @@ const UserPage = () => {
             </p>
             <p>Selling and buying cards as never been so easy!</p>
           </article>
-        </section>
-      </Link>
-      <Link to="/profile">
-        <section className="user-page-section  to-profile">
+        </Link>
+      </section>
+
+      <section className="user-page-section  to-profile">
+        <Link to="/profile">
           <h2>Modify Your Profile</h2>
           <article>
             <p>This section is under currently under development.</p>
           </article>
-        </section>
-      </Link>
+        </Link>
+      </section>
     </main>
   );
 };
 
 export default UserPage;
-
-//  <h1>Welcome to Magic Find</h1>
-//       <div>
-//         <button onClick={() => history.push({ pathname: '/store' })}>
-//           Search Store
-//         </button>
-//         <button onClick={() => history.push({ pathname: '/search-api' })}>
-//           Search API
-//         </button>
-//       </div>

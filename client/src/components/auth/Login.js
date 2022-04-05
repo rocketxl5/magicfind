@@ -72,7 +72,7 @@ const Login = () => {
   }, [isValid]);
 
   return (
-    <Container>
+    <div className="form-container">
       <form className="form">
         <h2 className="page-title">Login</h2>
         <div className="form-element">
@@ -113,7 +113,7 @@ const Login = () => {
           </div>
         </div>
       </form>
-    </Container>
+    </div>
   );
 };
 
