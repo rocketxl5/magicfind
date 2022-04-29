@@ -46,7 +46,8 @@ router.post(
       let user = await User.findOne({ email });
 
       if (!user) {
-        return res.status(400).json({ errors: [{ msg: 'Not match found' }] });
+        // console.log('no match');
+        return res.status(400).json({ errors: [{ msg: 'No user found' }] });
       }
 
       const match = await bcrypt.compare(password, user.password);

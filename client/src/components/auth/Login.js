@@ -75,6 +75,7 @@ const Login = () => {
     <div className="form-container">
       <form className="form">
         <h2 className="page-title">Login</h2>
+        <Error></Error>
         <div className="form-element">
           {errors.email ? (
             <p className="error">{errors.email}</p>
@@ -117,6 +118,8 @@ const Login = () => {
   );
 };
 
-const Container = styled.div``;
+const Error = styled.div`
+  display: none;
+`;
 
 export default Login;

@@ -1123,6 +1123,9 @@ button.compose-message {
   }
 }
 @media (min-width: 900px) {
+  body {
+    width: 80%;
+  }
   .item-container {
     width: 24%;
   }
