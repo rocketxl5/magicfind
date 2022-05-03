@@ -1,4 +1,6 @@
 # magicfind
 React Rest API
 
-Development version of the magic find application 
+Current development version of the magic find application. 
+Includes both front end and backend side of the application. 
+
